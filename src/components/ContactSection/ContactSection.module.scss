@@ -1,0 +1,82 @@
+@import '../../styles/variables.scss';
+
+.contactSection {
+  padding: 96px 0;
+  background: #f8fafc;
+}
+
+.enquireCard {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 48px 56px;
+  border: 1px solid #e2eaf2;
+  box-shadow: 0 14px 36px rgba(19, 43, 69, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 36px 28px;
+    gap: 28px;
+  }
+}
+
+.cardLeft {
+  max-width: 680px;
+}
+
+.kicker {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #18a6d9;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 800;
+  color: #102b46;
+  margin: 0 0 16px;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #647283;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cardRight {
+  flex-shrink: 0;
+}
+
+.enquireBtn {
+  background: #18a6d9 !important;
+  color: #ffffff !important;
+  height: 50px !important;
+  border-radius: 12px !important;
+  padding: 0 32px !important;
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  transition: background 0.2s ease, transform 0.2s ease !important;
+
+  &:hover {
+    background: #02a4db !important;
+    transform: translateY(-2px) !important;
+    color: #ffffff !important;
+  }
+}

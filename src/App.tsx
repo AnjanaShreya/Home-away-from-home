@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './components/Hero/Hero';
+import BookCards from './components/BookCards/BookCards';
+import StaysSection from './components/StaysSection/StaysSection';
+import Amenities from './components/Amenities/Amenities';
+import WhyUsSection from './components/WhyUsSection/WhyUsSection';
+import ContactSection from './components/ContactSection/ContactSection';
+import WhatsAppCTA from './components/WhatsAppCTA/WhatsAppCTA';
+import Footer from './components/Footer/Footer';
+import CheckAvailability from './components/CheckAvailability/CheckAvailability';
+import styles from './App.module.scss';
+
+const HomePage: React.FC = () => {
+  return (
+    <div className={styles.appContainer}>
+      <Navbar />
+      <Hero />
+      <BookCards />
+      <StaysSection />
+      <Amenities />
+      <WhyUsSection />
+      <ContactSection />
+      <WhatsAppCTA />
+      <Footer />
+    </div>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/check-availability" element={<CheckAvailability />} />
+      </Routes>
+    </Router>
   );
 }
 

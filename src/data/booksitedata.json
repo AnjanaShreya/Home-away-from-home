@@ -1,0 +1,207 @@
+{
+  "bookCards": [
+    {
+      "id": "single",
+      "occupancy": "SINGLE OCCUPANCY",
+      "title": "Private Sanctuary",
+      "badge": "PRIVATE BEDROOM",
+      "badgeStyle": "white",
+      "description": "A private bedroom inside a 3BHK apartment. Enjoy your personal space with shared access to the living room, dining area and kitchen.",
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+      "nonAcPrice": 1500,
+      "acPrice": 2000,
+      "features": [
+        "Professionals & solo travellers",
+        "Wi-Fi & housekeeping included",
+        "AC & Non-AC options"
+      ]
+    },
+    {
+      "id": "double",
+      "occupancy": "DOUBLE OCCUPANCY",
+      "title": "Shared Comfort",
+      "badge": "BEST VALUE",
+      "badgeStyle": "green",
+      "description": "Stay with a friend, colleague or partner in a comfortable shared room while enjoying access to the apartment amenities.",
+      "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
+      "nonAcPrice": 1800,
+      "acPrice": 2500,
+      "features": [
+        "Friends, couples & budget travellers",
+        "Shared room + full apartment access",
+        "AC & Non-AC options"
+      ]
+    }
+  ],
+  "availabilityOptions": [
+    {
+      "id": "single-ac",
+      "name": "Single AC Room",
+      "occupancy": "Single Occupancy",
+      "acType": "Air-conditioned",
+      "rate": 2000,
+      "image": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80",
+      "badge": "PRIVATE ROOM",
+      "features": [
+        "Air-conditioned",
+        "Attached Bathroom",
+        "High-Speed Wi-Fi",
+        "Work Desk & Chair",
+        "Daily Housekeeping",
+        "Kitchen Access"
+      ]
+    },
+    {
+      "id": "single-nonac",
+      "name": "Single Non-AC Room",
+      "occupancy": "Single Occupancy",
+      "acType": "Non-AC",
+      "rate": 1500,
+      "image": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
+      "badge": "VALUE STAY",
+      "features": [
+        "Ceiling Fan Vent",
+        "Attached Bathroom",
+        "High-Speed Wi-Fi",
+        "Daily Housekeeping",
+        "Kitchen Access"
+      ]
+    },
+    {
+      "id": "double-ac",
+      "name": "Double AC Room",
+      "occupancy": "Double Occupancy",
+      "acType": "Air-conditioned",
+      "rate": 2500,
+      "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
+      "badge": "POPULAR CHOICE",
+      "features": [
+        "Air-conditioned",
+        "King / Twin Bed",
+        "Attached Bathroom",
+        "Smart TV & Wi-Fi",
+        "Daily Housekeeping",
+        "Dining Access"
+      ]
+    },
+    {
+      "id": "double-nonac",
+      "name": "Double Non-AC Room",
+      "occupancy": "Double Occupancy",
+      "acType": "Non-AC",
+      "rate": 1800,
+      "image": "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80",
+      "badge": "EXECUTIVE STAY",
+      "features": [
+        "King / Twin Bed",
+        "Attached Bathroom",
+        "High-Speed Wi-Fi",
+        "Daily Housekeeping",
+        "Dining Access"
+      ]
+    },
+    {
+      "id": "suite-ac",
+      "name": "1BHK Serviced Suite AC",
+      "occupancy": "1BHK Suite (Up to 3 Guests)",
+      "acType": "Air-conditioned",
+      "rate": 3500,
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+      "badge": "PREMIUM SUITE",
+      "features": [
+        "Private Bedroom + Living Room",
+        "Air-conditioned",
+        "Equipped Kitchenette",
+        "Washing Machine",
+        "Private Balcony",
+        "24/7 Power Backup"
+      ]
+    },
+    {
+      "id": "suite-nonac",
+      "name": "1BHK Serviced Suite Non-AC",
+      "occupancy": "1BHK Suite (Up to 3 Guests)",
+      "acType": "Non-AC",
+      "rate": 2500,
+      "image": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80",
+      "badge": "EXTENDED STAY",
+      "features": [
+        "Private Bedroom + Living Room",
+        "Equipped Kitchenette",
+        "High-Speed Wi-Fi",
+        "Washing Machine",
+        "Housekeeping Support"
+      ]
+    }
+  ],
+  "stayCategories": [
+    {
+      "tag": "Spacious & Homely",
+      "title": "Extended Stays",
+      "description": "Settle in with fully furnished spaces, dining and living comfort, and everyday essentials already in place for a smooth longer stay.",
+      "image": "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "tag": "Work-Ready Setup",
+      "title": "Business Travel Stays",
+      "description": "Ideal for consultants, IT professionals and project teams needing high-speed Wi-Fi, desk space and central connectivity to HITEC City & Gachibowli.",
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "tag": "Peaceful & Accessible",
+      "title": "Medical Stays & Companions",
+      "description": "Located near major hospital hubs with quiet surroundings, elevator access, housekeeping and supportive staff for patients and caregivers.",
+      "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "amenities": [
+    {
+      "id": "kitchen",
+      "title": "Private Kitchen",
+      "description": "Cook on your own schedule with kitchen facilities and everyday essentials for a more independent stay."
+    },
+    {
+      "id": "work",
+      "title": "Work-Friendly Setup",
+      "description": "Comfortable spaces for remote work, calls and focused days — ideal for professionals staying in the city longer."
+    },
+    {
+      "id": "comfort",
+      "title": "Home-Like Comfort",
+      "description": "Separate living and sleeping spaces give you the room to unwind, organise your day and feel settled."
+    },
+    {
+      "id": "support",
+      "title": "Daily Support",
+      "description": "Professional housekeeping and on-ground assistance help make an extended stay feel easy and well managed."
+    }
+  ],
+  "contactInfo": {
+    "phone": "+91 98765 43210",
+    "email": "stay@homeawayfromhome.in",
+    "address": "Plot No. 42, Near HITEC City / Gachibowli Junction, Hyderabad, Telangana 500081",
+    "nearbyHubs": [
+      "HITEC City & Financial District: 10 mins",
+      "AIG / Apollo / Care Hospitals: 8 mins",
+      "Rajiv Gandhi Intl. Airport: 30 mins"
+    ],
+    "roomTypeOptions": [
+      { "label": "Single Occupancy Room", "value": "single" },
+      { "label": "Double / Twin Sharing Room", "value": "double" },
+      { "label": "1BHK Serviced Suite", "value": "suite" }
+    ],
+    "preferenceOptions": [
+      { "label": "AC (Air-Conditioned)", "value": "ac" },
+      { "label": "Non-AC (Standard)", "value": "nonac" }
+    ],
+    "customQuoteReasons": [
+      "Weekly Stay",
+      "Monthly Stay",
+      "Corporate Group Booking",
+      "Business Stay",
+      "Medical-Related Stay",
+      "Relocation / Extended Stay",
+      "Other"
+    ]
+  }
+}

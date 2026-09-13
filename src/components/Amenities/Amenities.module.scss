@@ -1,0 +1,97 @@
+@import '../../styles/variables.scss';
+
+.amenities {
+  padding: 88px 0;
+  background: #ffffff;
+}
+
+.sectionHead {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 52px;
+}
+
+.sectionKicker {
+  font-size: 12px;
+  font-weight: 800;
+  color: #18a6d9;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  color: #102b46;
+  margin: 0 0 16px;
+  letter-spacing: -0.8px;
+  line-height: 1.2;
+}
+
+.sectionDesc {
+  font-size: 16px;
+  color: #647283;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.amenityGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.amenityCard {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px 24px;
+  border: 1px solid #e5eaf0;
+  border-top: 3px solid #caa35b;
+  box-shadow: 0 10px 28px rgba(19, 43, 69, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(19, 43, 69, 0.09);
+  }
+}
+
+.iconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e9f7fc;
+  color: #18a6d9;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.itemTitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #102b46;
+  margin: 0 0 12px;
+}
+
+.itemDesc {
+  font-size: 14px;
+  color: #647283;
+  line-height: 1.6;
+  margin: 0;
+}

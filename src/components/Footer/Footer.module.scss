@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  background: $navy;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  strong {
+    color: #fff;
+  }
+}
+
+@media (max-width: 600px) {
+  .footerInner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
