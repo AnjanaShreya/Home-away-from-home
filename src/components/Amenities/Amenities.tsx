@@ -1,5 +1,4 @@
 import React from 'react';
-import type { AmenityItem } from '../../types/Amenities.types';
 import siteData from '../../data/booksitedata.json';
 import styles from './Amenities.module.scss';
 
@@ -28,12 +27,6 @@ const ICONS_MAP: Record<string, React.ReactNode> = {
   ),
 };
 
-const AMENITIES: AmenityItem[] = siteData.amenities.map((item) => ({
-  title: item.title,
-  description: item.description,
-  icon: ICONS_MAP[item.id] || null,
-}));
-
 export const Amenities: React.FC = () => {
   return (
     <section id="amenities" className={styles.amenities}>
@@ -49,9 +42,9 @@ export const Amenities: React.FC = () => {
         </div>
 
         <div className={styles.amenityGrid}>
-          {AMENITIES.map((item, index) => (
-            <div key={index} className={styles.amenityCard}>
-              <div className={styles.iconWrapper}>{item.icon}</div>
+          {siteData.amenities.map((item) => (
+            <div key={item.id} className={styles.amenityCard}>
+              <div className={styles.iconWrapper}>{ICONS_MAP[item.id]}</div>
               <h3 className={styles.itemTitle}>{item.title}</h3>
               <p className={styles.itemDesc}>{item.description}</p>
             </div>

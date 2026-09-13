@@ -1,9 +1,8 @@
 import React from 'react';
 import { Button } from 'rsuite';
-import type { HeroProps } from '../../types/Hero.types';
 import styles from './Hero.module.scss';
 
-export const Hero: React.FC<HeroProps> = () => {
+export const Hero: React.FC = () => {
   return (
     <main id="hero" className={styles.hero}>
       <div className={styles.slideOverlay}></div>

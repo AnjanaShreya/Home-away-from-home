@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'rsuite';
-import type { RoomCardData, SelectedTypesState } from '../../types/BookCards.types';
+import type { RoomCardData, SelectedTypesState } from '../../types';
 import siteData from '../../data/booksitedata.json';
 import styles from './BookCards.module.scss';
-
-const ROOMS: RoomCardData[] = siteData.bookCards;
 
 export const BookCards: React.FC = () => {
   const [selectedTypes, setSelectedTypes] = useState<SelectedTypesState>({
@@ -32,7 +30,7 @@ export const BookCards: React.FC = () => {
         </div>
 
         <div className={styles.tariffGrid}>
-          {ROOMS.map((room) => {
+          {(siteData.bookCards as RoomCardData[]).map((room) => {
             const currentType = selectedTypes[room.id] || 'ac';
             const price = currentType === 'ac' ? room.acPrice : room.nonAcPrice;
 

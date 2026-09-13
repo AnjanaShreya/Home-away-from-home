@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Drawer } from 'rsuite';
-import type { NavbarProps } from '../../types/Navbar.types';
 import styles from './Navbar.module.scss';
 
-export const Navbar: React.FC<NavbarProps> = () => {
+export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
 

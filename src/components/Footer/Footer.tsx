@@ -1,8 +1,7 @@
 import React from 'react';
-import type { FooterProps } from '../../types/Footer.types';
 import styles from './Footer.module.scss';
 
-export const Footer: React.FC<FooterProps> = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footerInner}`}>

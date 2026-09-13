@@ -15,19 +15,11 @@ import type {
   RoomOption,
   SelectedRoom,
   CustomQuoteFormData,
-  CheckAvailabilityProps,
-} from '../../types/CheckAvailability.types';
+} from '../../types';
 import siteData from '../../data/booksitedata.json';
 import styles from './CheckAvailability.module.scss';
 
-const ROOM_OPTIONS: RoomOption[] = siteData.availabilityOptions as RoomOption[];
-
-const REASON_OPTIONS = siteData.contactInfo.customQuoteReasons.map((item) => ({
-  label: item,
-  value: item,
-}));
-
-export const CheckAvailability: React.FC<CheckAvailabilityProps> = () => {
+export const CheckAvailability: React.FC = () => {
   // Search input state (unapplied until Check Availability is clicked)
   const defaultCheckIn = new Date();
   const defaultCheckOut = new Date(Date.now() + 86400000 * 1); // 1 night / 1 day default
@@ -287,7 +279,7 @@ export const CheckAvailability: React.FC<CheckAvailabilityProps> = () => {
                 </article>
               )}
 
-              {ROOM_OPTIONS.map((room) => (
+              {(siteData.availabilityOptions as RoomOption[]).map((room) => (
                 <article key={room.id} className={styles.roomCard}>
                   <div className={styles.roomImage}>
                     <img src={room.image} alt={room.name} />
@@ -487,7 +479,10 @@ export const CheckAvailability: React.FC<CheckAvailabilityProps> = () => {
                   Reason of Stay *
                 </Form.ControlLabel>
                 <SelectPicker
-                  data={REASON_OPTIONS}
+                  data={siteData.contactInfo.customQuoteReasons.map((item) => ({
+                    label: item,
+                    value: item,
+                  }))}
                   value={quoteForm.reason}
                   onChange={(val) => setQuoteForm({ ...quoteForm, reason: val || '' })}
                   block

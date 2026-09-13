@@ -1,9 +1,8 @@
 import React from 'react';
-import type { WhatsAppCTAProps } from '../../types/WhatsAppCTA.types';
 import siteData from '../../data/booksitedata.json';
 import styles from './WhatsAppCTA.module.scss';
 
-export const WhatsAppCTA: React.FC<WhatsAppCTAProps> = () => {
+export const WhatsAppCTA: React.FC = () => {
   const cleanPhone = siteData.contactInfo.phone.replace(/\D+/g, '');
   return (
     <a

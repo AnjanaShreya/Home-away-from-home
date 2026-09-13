@@ -1,5 +1,4 @@
 import React from 'react';
-import type { WhyUsSectionProps } from '../../types/WhyUsSection.types';
 import styles from './WhyUsSection.module.scss';
 
 const FEATURES = [
@@ -9,7 +8,7 @@ const FEATURES = [
   'Professionally managed stay experience',
 ];
 
-export const WhyUsSection: React.FC<WhyUsSectionProps> = () => {
+export const WhyUsSection: React.FC = () => {
   return (
     <section id="why-us" className={styles.whyUsSection}>
       <div className="container">

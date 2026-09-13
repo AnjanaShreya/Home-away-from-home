@@ -1,10 +1,8 @@
 import React from 'react';
 import { Button } from 'rsuite';
-import type { StayItem } from '../../types/StaysSection.types';
+import type { StayItem } from '../../types';
 import siteData from '../../data/booksitedata.json';
 import styles from './StaysSection.module.scss';
-
-const STAYS_DATA: StayItem[] = siteData.stayCategories;
 
 export const StaysSection: React.FC = () => {
   return (
@@ -19,7 +17,7 @@ export const StaysSection: React.FC = () => {
         </div>
 
         <div className={styles.staysGrid}>
-          {STAYS_DATA.map((item, index) => (
+          {(siteData.stayCategories as StayItem[]).map((item, index) => (
             <article key={index} className={styles.stayCard}>
               <div className={styles.stayImg}>
                 <img src={item.image} alt={item.title} />
