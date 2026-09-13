@@ -1,46 +1,65 @@
-# Getting Started with Create React App
+# Home Away From Home — Serviced Apartments
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application for **Home Away From Home** serviced apartments in Hyderabad, built with React, TypeScript, and SCSS Modules.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ⚡ Quick Start (How to Run)
 
-### `npm start`
+### 1. Install dependencies
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. Start local server
+```bash
+npm start
+```
+Open **`http://localhost:3000`** in your browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 💡 Why is Node.js Required?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Browsers only understand plain HTML, CSS, and vanilla JavaScript. They cannot run **React (JSX)**, **TypeScript (`.tsx`)**, or **SCSS (`.scss`)** directly.
 
-### `npm run build`
+Node.js is used during development to:
+1. **Package Management (`npm`):** Download and manage libraries like React, React Router, and RSuite UI.
+2. **Compilation & Bundling:** Automatically translate TypeScript (`.tsx`) and SCSS into standard JS and CSS that browsers can read.
+3. **Local Dev Server:** Power `npm start` so the browser updates instantly when you edit files.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*(Note: Once you run `npm run build`, the output is plain HTML/JS/CSS that can be hosted on any web server without needing Node.js on the production server).*
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🧰 Tech Stack
 
-### `npm run eject`
+- **React 19** + **TypeScript**
+- **React Router v6** (Multi-page routing)
+- **SCSS Modules** (Scoped component styling) + SCSS Variables
+- **RSuite v6** (UI DatePickers, Modals, Drawers)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📊 Where is the Data?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+All content, room tariffs, features, stay categories, and contact info live in one file:
+👉 **`src/data/booksitedata.json`**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Edit `booksitedata.json` to update room names, prices, images, or contact details across the app.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Folder Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+my-app/
+├── src/
+│   ├── components/       # Modular UI components (Navbar, Hero, BookCards, etc.)
+│   ├── data/             # 📊 booksitedata.json (Room rates & content)
+│   ├── styles/           # 🎨 SCSS variables & design tokens
+│   ├── types/            # 🏷️ TypeScript interface & type definitions
+│   ├── App.tsx           # Page routes & layout setup
+│   └── index.tsx         # App entry point
+└── package.json          # Project dependencies & scripts
+```
