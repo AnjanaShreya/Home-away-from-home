@@ -40,16 +40,20 @@ img {
     opacity: 0;
     transform: scale(1.06);
   }
+
   6% {
     opacity: 1;
   }
+
   33% {
     opacity: 1;
   }
+
   40% {
     opacity: 0;
     transform: scale(1);
   }
+
   100% {
     opacity: 0;
   }
@@ -68,10 +72,32 @@ img {
 .rs-picker-select-menu,
 .rs-picker-cascader-menu {
   z-index: 1060 !important;
+  max-height: 220px !important;
+}
+
+/* RSuite DatePicker: remove line-through on older/disabled dates, make them unselectable and dull */
+.rs-calendar-table-cell-disabled {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+
+  .rs-calendar-table-cell-content {
+    text-decoration: none !important;
+    color: #94a3b8 !important;
+    opacity: 0.35 !important;
+    cursor: not-allowed !important;
+    background: transparent !important;
+  }
+}
+
+.rs-picker-select-menu-items,
+.rs-picker-menu-items {
+  max-height: 170px !important;
+  overflow-y: auto !important;
 }
 
 /* Ensure RSuite Modal Dialog is ALWAYS above the dark backdrop */
 .rs-modal-backdrop {
+
   z-index: 1040 !important;
   background-color: rgba(16, 43, 70, 0.68) !important;
   backdrop-filter: blur(6px) !important;

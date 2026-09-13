@@ -40,9 +40,8 @@ export const BookCards: React.FC = () => {
                   <img src={room.image} alt={room.title} />
                   {room.badge && (
                     <span
-                      className={`${styles.photoBadge} ${
-                        room.badgeStyle === 'green' ? styles.greenBadge : styles.whiteBadge
-                      }`}
+                      className={`${styles.photoBadge} ${room.badgeStyle === 'green' ? styles.greenBadge : styles.whiteBadge
+                        }`}
                     >
                       {room.badge}
                     </span>
@@ -56,18 +55,16 @@ export const BookCards: React.FC = () => {
                   <div className={styles.tariffChips}>
                     <button
                       type="button"
-                      className={`${styles.tariffOption} ${
-                        currentType === 'ac' ? styles.active : ''
-                      }`}
+                      className={`${styles.tariffOption} ${currentType === 'ac' ? styles.active : ''
+                        }`}
                       onClick={() => handleTypeToggle(room.id, 'ac')}
                     >
                       AC
                     </button>
                     <button
                       type="button"
-                      className={`${styles.tariffOption} ${
-                        currentType === 'nonac' ? styles.active : ''
-                      }`}
+                      className={`${styles.tariffOption} ${currentType === 'nonac' ? styles.active : ''
+                        }`}
                       onClick={() => handleTypeToggle(room.id, 'nonac')}
                     >
                       Non-AC

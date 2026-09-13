@@ -20,6 +20,7 @@ import siteData from '../../data/booksitedata.json';
 import styles from './CheckAvailability.module.scss';
 
 export const CheckAvailability: React.FC = () => {
+
   // Search input state (unapplied until Check Availability is clicked)
   const defaultCheckIn = new Date();
   const defaultCheckOut = new Date(Date.now() + 86400000 * 1); // 1 night / 1 day default
@@ -55,6 +56,67 @@ export const CheckAvailability: React.FC = () => {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays > 0 ? diffDays : 0;
   }, [checkIn, checkOut]);
+
+  // Helper to normalize any date to midnight timestamp
+  const getMidnight = (date: Date) => {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  };
+
+  // Disable dates strictly before today for Check-in (allows selecting today's date)
+  const shouldDisableCheckIn = (date?: Date) => {
+    if (!date) return false;
+    const now = new Date();
+    return getMidnight(date) < getMidnight(now);
+  };
+
+  // Disable dates before or on Check-in date for Check-out
+  const shouldDisableCheckOut = (date?: Date) => {
+    if (!date) return false;
+    const now = new Date();
+    const minTimestamp = checkInInput ? getMidnight(checkInInput) : getMidnight(now);
+    return getMidnight(date) <= minTimestamp;
+  };
+
+  // Handle Check-in change with auto check-out adjustment
+  const handleCheckInChange = (val: Date | null) => {
+    setCheckInInput(val);
+    if (val && checkOutInput && getMidnight(checkOutInput) <= getMidnight(val)) {
+      setCheckOutInput(new Date(val.getTime() + 86400000));
+    }
+  };
+
+  // Modal Date constraints
+  const shouldDisableModalCheckIn = (date?: Date) => {
+    if (!date) return false;
+    const now = new Date();
+    return getMidnight(date) < getMidnight(now);
+  };
+
+  const shouldDisableModalCheckOut = (date?: Date) => {
+    if (!date) return false;
+    const now = new Date();
+    const minTimestamp = quoteForm.checkIn ? getMidnight(quoteForm.checkIn) : getMidnight(now);
+    return getMidnight(date) <= minTimestamp;
+  };
+
+  const handleModalCheckInChange = (val: Date | null) => {
+    const updated = { ...quoteForm, checkIn: val };
+    if (val && quoteForm.checkOut && getMidnight(quoteForm.checkOut) <= getMidnight(val)) {
+      updated.checkOut = new Date(val.getTime() + 86400000);
+    }
+    setQuoteForm(updated);
+  };
+
+
+  // Format date helper (e.g. "19 Sept 2026")
+  const formatDateStr = (d: Date | null) => {
+    if (!d) return '';
+    return d.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+  };
 
   // Handle Search Submission on clicking "Check Availability"
   const handleCheckAvailability = () => {
@@ -179,9 +241,10 @@ export const CheckAvailability: React.FC = () => {
                 <label>Check-in</label>
                 <DatePicker
                   oneTap
+                  shouldDisableDate={shouldDisableCheckIn}
                   container={() => document.body}
                   value={checkInInput}
-                  onChange={(val) => setCheckInInput(val)}
+                  onChange={handleCheckInChange}
                   format="dd-MM-yyyy"
                   block
                   cleanable={false}
@@ -191,6 +254,7 @@ export const CheckAvailability: React.FC = () => {
                 <label>Check-out</label>
                 <DatePicker
                   oneTap
+                  shouldDisableDate={shouldDisableCheckOut}
                   container={() => document.body}
                   value={checkOutInput}
                   onChange={(val) => setCheckOutInput(val)}
@@ -231,14 +295,14 @@ export const CheckAvailability: React.FC = () => {
         <div className="container">
           <div className={styles.resultHead}>
             <div>
-              <div className={styles.kicker}>Available Stays</div>
+              <div className={styles.kicker}>AVAILABLE STAYS</div>
               <h2>Accommodation options</h2>
               <p>
-                Enter your dates and number of guests to compare suitable room combinations and stay options.
+                {formatDateStr(checkIn)} &rarr; {formatDateStr(checkOut)} &middot; {guests} {guests === 1 ? 'guest' : 'guests'}
               </p>
             </div>
             <div className={styles.nightPill}>
-              {calculateNights > 0 ? `${calculateNights} Night(s) Selected` : 'Dates not selected'}
+              {calculateNights} {calculateNights === 1 ? 'night' : 'nights'}
             </div>
           </div>
 
@@ -279,50 +343,64 @@ export const CheckAvailability: React.FC = () => {
                 </article>
               )}
 
-              {(siteData.availabilityOptions as RoomOption[]).map((room) => (
-                <article key={room.id} className={styles.roomCard}>
-                  <div className={styles.roomImage}>
-                    <img src={room.image} alt={room.name} />
-                    <span className={styles.roomBadge}>{room.badge}</span>
-                  </div>
+              {(siteData.availabilityOptions as RoomOption[]).map((room) => {
+                const roomCapacity = room.occupancy.toLowerCase().includes('double') || room.occupancy.toLowerCase().includes('2bhk') || room.occupancy.toLowerCase().includes('studio') ? 2 : 1;
+                const roomsNeeded = Math.ceil(guests / roomCapacity);
+                const roomNights = calculateNights > 0 ? calculateNights : 1;
+                const totalPriceCalc = room.rate * roomsNeeded * roomNights;
 
-                  <div className={styles.roomBody}>
-                    <div className={styles.roomInfo}>
-                      <h3>{room.name}</h3>
-                      <div className={styles.roomSub}>{room.occupancy}</div>
-                      <div className={styles.chips}>
-                        <span
-                          className={`${styles.chip} ${
-                            room.acType === 'Air-conditioned' ? styles.ac : ''
-                          }`}
-                        >
-                          {room.acType}
-                        </span>
-                      </div>
-                      <div className={styles.features}>
-                        {room.features.map((feat, idx) => (
-                          <span key={idx} className={styles.feature}>
-                            {feat}
+                return (
+                  <article key={room.id} className={styles.roomCard}>
+                    <div className={styles.roomImage}>
+                      <img src={room.image} alt={room.name} />
+                      <span className={styles.roomBadge}>{room.badge}</span>
+                    </div>
+
+                    <div className={styles.roomBody}>
+                      <div className={styles.roomInfo}>
+                        <h3>{room.name}</h3>
+                        <div className={styles.roomSub}>{room.occupancy}</div>
+                        <div className={styles.chips}>
+                          <span
+                            className={`${styles.chip} ${
+                              room.acType === 'Air-conditioned' ? styles.ac : ''
+                            }`}
+                          >
+                            {room.acType}
                           </span>
-                        ))}
+                          <span className={styles.chip}>Furnished</span>
+                          <span className={styles.chip}>Housekeeping</span>
+                        </div>
+                        <div className={styles.features}>
+                          {room.features.map((feat, idx) => (
+                            <span key={idx} className={styles.feature}>
+                              {feat}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className={styles.rateCol}>
-                      <small>Tariff</small>
-                      <div className={styles.price}>
-                        ₹{room.rate.toLocaleString('en-IN')} <span>/ night</span>
+                      <div className={styles.rateCol}>
+                        <small>ROOM TARIFF</small>
+                        <div className={styles.price}>
+                          ₹{room.rate.toLocaleString('en-IN')} <span>/room/night</span>
+                        </div>
+                        {roomsNeeded > 1 && (
+                          <div style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 10px', textAlign: 'right' }}>
+                            ₹{totalPriceCalc.toLocaleString('en-IN')} for {roomsNeeded} rooms × {roomNights} night
+                          </div>
+                        )}
+                        <Button
+                          className={styles.selectBtn}
+                          onClick={() => handleSelectRoom(room)}
+                        >
+                          {roomsNeeded > 1 ? `Select ${roomsNeeded} Rooms` : 'Select Room'}
+                        </Button>
                       </div>
-                      <Button
-                        className={styles.selectBtn}
-                        onClick={() => handleSelectRoom(room)}
-                      >
-                        Select Room
-                      </Button>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </section>
 
             {/* Sidebar Summary */}
@@ -362,7 +440,7 @@ export const CheckAvailability: React.FC = () => {
                 disabled={!selectedRoom}
                 onClick={() => handleOpenQuoteModal()}
               >
-                Request Custom Quote →
+                Continue to Guest Details →
               </Button>
 
               {/* Custom Quote Option in Summary */}
@@ -411,8 +489,9 @@ export const CheckAvailability: React.FC = () => {
                 </Form.ControlLabel>
                 <DatePicker
                   oneTap
+                  shouldDisableDate={shouldDisableModalCheckIn}
                   value={quoteForm.checkIn}
-                  onChange={(val) => setQuoteForm({ ...quoteForm, checkIn: val })}
+                  onChange={handleModalCheckInChange}
                   block
                   placeholder="Select check-in"
                 />
@@ -423,6 +502,7 @@ export const CheckAvailability: React.FC = () => {
                 </Form.ControlLabel>
                 <DatePicker
                   oneTap
+                  shouldDisableDate={shouldDisableModalCheckOut}
                   value={quoteForm.checkOut}
                   onChange={(val) => setQuoteForm({ ...quoteForm, checkOut: val })}
                   block
@@ -486,6 +566,10 @@ export const CheckAvailability: React.FC = () => {
                   value={quoteForm.reason}
                   onChange={(val) => setQuoteForm({ ...quoteForm, reason: val || '' })}
                   block
+                  placement="topStart"
+                  menuMaxHeight={200}
+                  preventOverflow
+                  container={() => document.body}
                   placeholder="Select reason for stay"
                 />
               </div>

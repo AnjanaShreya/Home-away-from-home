@@ -17,16 +17,20 @@
     opacity: 0;
     transform: scale(1.06);
   }
+
   8% {
     opacity: 1;
   }
+
   33% {
     opacity: 1;
   }
+
   41% {
     opacity: 0;
     transform: scale(1);
   }
+
   100% {
     opacity: 0;
   }
@@ -35,11 +39,9 @@
 .slideOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(16, 43, 70, 0.35) 0%,
-    rgba(16, 43, 70, 0.55) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(16, 43, 70, 0.35) 0%,
+      rgba(16, 43, 70, 0.55) 100%);
   z-index: 2;
 }
 

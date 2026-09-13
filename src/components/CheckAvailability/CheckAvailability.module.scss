@@ -59,6 +59,7 @@
 
     .helpText {
       opacity: 0.85;
+
       @media (max-width: 768px) {
         display: none;
       }
@@ -142,6 +143,7 @@
     @media (max-width: 992px) {
       grid-template-columns: 11fr 1fr;
     }
+
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
     }
@@ -784,6 +786,21 @@
 
     strong {
       color: $white;
+    }
+  }
+}
+
+:global {
+  .rs-calendar-table-cell-disabled {
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+
+    .rs-calendar-table-cell-content {
+      text-decoration: none !important;
+      color: #94a3b8 !important;
+      opacity: 0.35 !important;
+      cursor: not-allowed !important;
+      background: transparent !important;
     }
   }
 }
